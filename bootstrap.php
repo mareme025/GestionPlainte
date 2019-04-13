@@ -14,7 +14,7 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src/entit
 
 // database configuration parameters
 $conn = array(
-    'dbname' => 'mvclpgl',
+    'dbname' => 'lpgl_php_gestionplainte',
     'user'     => 'root',
     'password' => '',
     'host' => '127.0.0.1',

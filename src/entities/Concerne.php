@@ -1,28 +1,33 @@
 <?php
 use Doctrine\ORM\Annotation as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
 /**
- * @Entity @Table(name="user")
+ * @Entity @Table(name="concerne")
  **/
-class User
+class Concerne
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
     private $id;
+
     /** @Column(type="string") **/
     private $nom;
+
     /** @Column(type="string") **/
     private $prenom;
-    /** @Column(type="string") **/
-    private $email;
-    /** @Column(type="string") **/
-    private $password;
 
-    /**
-     * One user has many infractions. This is the inverse side.
-     * @OneToMany(targetEntity="Infraction", mappedBy="user")
-     */
-    private $infractions;
+    /** @Column(type="string") **/
+    private $adresse;
+
+     /** @Column(type="integer") **/
+     private $telephone;
+
+      /** 
+         * Many concerne have Many infraction.
+         * @ManyToMany(targetEntity="Infraction", inversedBy="concernes")
+         * @JoinTable(name="infractions_concernes")
+         */
+     private $infractions;
+
     
     public function __construct()
     {
@@ -55,23 +60,24 @@ class User
         $this->prenom = $prenom;
     }
 
-    public function getEmail()
+    public function getAdresse()
     {
-        return $this->email;
+        return $this->adresse;
     }
-    public function setEmail($email)
+    public function setAdresse($adresse)
     {
-        $this->email = $email;
+        $this->adresse = $adresse;
     }
     
-    public function getPassword()
+    public function getTelephone()
     {
-        return $this->password;
+        return $this->telephone;
     }
-    public function setPassword($password)
+    public function setTelephone($telephone)
     {
-        $this->password = $password;
+        $this->telephone = $telephone;
     }
+    
     public function getInfractions()
     {
         return $this->infractions;
@@ -80,7 +86,7 @@ class User
     {
         $this->infractions = $infractions;
     }
-   
+    
 }
 
 ?>
